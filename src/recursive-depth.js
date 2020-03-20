@@ -1,19 +1,20 @@
 module.exports = class DepthCalculator {
-    calculateDepth(arr) {
-        if (Array.isArray(arr)) {
-            // let result = 1;
+	calculateDepth(arr) {
+    	if (!Array.isArray(arr)) {
+    		return 0;
+    	}
 
-            // let tempArr = arr.map(t => 
-            //     return this.calculateDepth(t)
-            // });
+		let nestedDepth = 0;
+	    for (let i = 0; i < arr.length; i++) {
+	      	if (Array.isArray(arr[i])) {
+	      		let localDepth = this.calculateDepth(arr[i]);
+	    		if (localDepth > nestedDepth) {
+	    			nestedDepth = localDepth;
+	    		} 
+	      	}
+	    };
 
-            // if (tempArr.length) {
-            //     result += ;
-            // }
-            return 1 + Math.max(...arr.map(t => this.calculateDepth(t)));
-            // return 1 + this.calculateDepth(...arr.filter());
-        } else {
-            return 0;
-        }
-    }
-};
+		return 1 + nestedDepth;	
+	}
+}
+	
