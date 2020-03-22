@@ -1,23 +1,34 @@
+let _links = [];
+
 const chainMaker = {
   getLength() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    return _links.length;
   },
   addLink(value) {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    if (value === undefined){
+      _links.push('');
+    } else {
+      _links.push(value + '');
+    }
+
+    return chainMaker;
   },
   removeLink(position) {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    if (!Number.isInteger(position) || position == NaN || position > _links.length || position < 1) {
+      _links = [];
+      throw new Error("Input is not correct!!!");
+    } 
+    _links.splice(position-1, 1);
+    return chainMaker;  
   },
   reverseChain() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    _links.reverse();
+    return chainMaker;
   },
   finishChain() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    let chain = '( ' + _links.join(' )~~( ') + ' )';
+    _links = [];
+    return chain;
   }
 };
 
